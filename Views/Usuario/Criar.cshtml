@@ -1,0 +1,55 @@
+﻿@using ControleDeContatos.Enums
+@model UsuarioModel;
+
+@{
+    ViewData["Title"] = "Criar Usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4"> Cadastrar Usuario</h1>
+    
+</div>
+
+<form asp-controller="Usuario" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" style="width: 40%;" placeholder="Digite o nome do usuário">
+        @Html.ValidationMessageFor(x =>x.Nome)
+    </div><br/>
+
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" asp-for="Login" class="form-control" style="width: 40%;" placeholder="Digite o Login do usuário">
+        @Html.ValidationMessageFor(x => x.Login)
+
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="text" asp-for="Email" class="form-control" style="width: 40%;" placeholder="Digite o email do usuário">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div><br />
+
+    <div class="form-group">
+        <label for="perfil">Perfil</label>
+        @* <input type="text" asp-for="Perfil" class="form-control"> *@
+        <select asp-for="Perfil" class="form-control" style="width: 20%;">
+            <option value="">Selecione</option>
+            <option value="@PerfilEnum.Admin">Adminstrador</option>
+            <option value ="@PerfilEnum.Padrao">Padrão</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Perfil)
+    </div><br />
+
+    <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" asp-for="Senha" class="form-control" style="width: 20%;" placeholder="Digite a Senha do usuário">
+        @Html.ValidationMessageFor(x => x.Senha)
+    </div><br />
+    <br/>
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" style="width: 10%;" type="submit">Adicionar</button>
+        <a class="btn btn-secondary" style="width: 10%;" asp-controller="Usuario" asp-action="Index" role="button">Voltar</a>
+    </div>
+</form>
+ 
